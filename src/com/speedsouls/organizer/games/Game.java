@@ -3,7 +3,8 @@ package com.speedsouls.organizer.games;
 
 import java.io.File;
 import java.util.Collections;
-import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.speedsouls.organizer.profileconfig.Profile;
 
@@ -26,12 +27,12 @@ public enum Game
 	DARK_SOULS_III("Dark Souls III", "DS3", "DS30000.sl2"),
 	SEKIRO_SHADOWS_DIE_TWICE("Sekiro: Shadows Die Twice", "SSDT", "S0000.sl2");
 
-	private String caption;
-	private String abbr;
-	private String saveName;
+	private final String caption;
+	private final String abbr;
+	private final String saveName;
 	private File directory;
 	private File saveFile;
-	private LinkedList<Profile> profiles;
+	private List<Profile> profiles;
 
 
 	/**
@@ -41,12 +42,12 @@ public enum Game
 	 * @param abbr the abbreviation of this game
 	 * @param saveName the name of the game's savefile
 	 */
-	private Game(String caption, String abbr, String saveName)
+	Game(String caption, String abbr, String saveName)
 	{
 		this.caption = caption;
 		this.abbr = abbr;
 		this.saveName = saveName;
-		profiles = new LinkedList<>();
+		profiles = new CopyOnWriteArrayList<>();
 	}
 
 
@@ -143,7 +144,7 @@ public enum Game
 	/**
 	 * @return the profiles
 	 */
-	public LinkedList<Profile> getProfiles()
+	public List<Profile> getProfiles()
 	{
 		return profiles;
 	}
